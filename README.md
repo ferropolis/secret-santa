@@ -23,7 +23,7 @@ Friends looking for a fun and fair way to exchange gifts
 📥 Installation & Usage
 Clone the repository
 
-git clone https://github.com/yourusername/secret-santa.git
+git clone https://github.com/ferropöolis/secret-santa.git
 cd secret-santa
 
 Database setup
