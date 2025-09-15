@@ -1,0 +1,91 @@
+:root{
+  --bg:#f7f8fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --red:#b91c1c;    /* Weihnachtsrot */
+  --green:#166534;  /* TannengrÃ¼n */
+  --gold:#b45309;   /* Akzent */
+  --snow:#e5f0ff;
+}
+
+*{box-sizing:border-box}
+
+/* Basis */
+html,body{
+  margin:0;
+  padding:0;
+  font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text);
+  min-height:100%;
+}
+
+/* ðŸ”§ Robuste Hintergrund-LÃ¶sung:
+   - kein Kacheln
+   - scrollt nicht mit
+   - mobil butterweich */
+body{
+  background:none; /* Fallback-Hintergrund entfernen */
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,#eaf6ff 0%, #f7f8fb 100%);
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+/* Header: Deko nicht kacheln */
+.header{
+  background:
+    radial-gradient(200px 80px at 10% 0%, rgba(185,28,28,.08), transparent),
+    radial-gradient(200px 80px at 90% 0%, rgba(22,101,52,.08), transparent);
+  background-repeat:no-repeat;
+  background-size:cover;
+  border-bottom:4px solid rgba(22,101,52,.08);
+  padding:1.25rem 0;
+}
+
+.container{max-width:900px;margin:0 auto;padding:0 1rem}
+.card{background:var(--card);border-radius:18px;padding:1.25rem;box-shadow:0 10px 28px rgba(0,0,0,.06)}
+h1{margin:.2rem 0 1rem;font-size:1.7rem;display:flex;gap:.6rem;align-items:center}
+h1 .fl{font-size:1.4rem}
+h2{margin:1.1rem 0 .6rem;font-size:1.2rem}
+.row{display:flex;gap:1rem;flex-wrap:wrap}
+input[type="text"],input[type="email"],input[type="password"]{
+  width:100%;padding:.7rem .8rem;border:1px solid #e5e7eb;border-radius:12px
+}
+button,.btn{
+  display:inline-block;padding:.7rem 1rem;border:0;border-radius:12px;background:var(--red);
+  color:#fff;cursor:pointer;text-decoration:none;transition:.2s transform ease;
+}
+button:hover,.btn:hover{transform:translateY(-1px)}
+button.secondary{background:var(--green)}
+.badge{display:inline-block;padding:.2rem .6rem;border-radius:999px;background:#fee2e2;color:#7f1d1d;font-size:.82rem}
+.meta{color:var(--muted);font-size:.92rem}
+table{width:100%;border-collapse:collapse}
+th,td{padding:.6rem .4rem;border-bottom:1px solid #e5e7eb}
+.footer{margin-top:1rem;color:var(--muted);font-size:.85rem}
+.note{background:rgba(180,83,9,.08);border-left:4px solid var(--gold);padding:.6rem .8rem;border-radius:8px}
+hr{border:0;height:1px;background:#e5e7eb;margin:1rem 0}
+.small{font-size:.9rem}
+
+@media (min-width:680px){
+  .row-2>*{flex:1}
+}
+button.danger { background:#7f1d1d; }
+button.danger:hover { transform: translateY(-1px); }
+
+/* === Snow Canvas (Overlay) === */
+#snow-canvas{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;          /* über allem, aber klicks bleiben durchlässig */
+  pointer-events: none;   /* keine Klick-Blockade */
+}
+/* Wenn Nutzer reduzierte Bewegung wünscht: kein Schnee */
+@media (prefers-reduced-motion: reduce) {
+  #snow-canvas { display: none !important; }
+}
