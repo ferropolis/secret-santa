@@ -1,7 +1,6 @@
 <?php
 require __DIR__ . '/db.php';
 
-// Anmeldung offen?
 if (setting('registration_open') !== '1') {
   http_response_code(403);
   exit('Anmeldung geschlossen.');
@@ -10,6 +9,22 @@ if (setting('registration_open') !== '1') {
 // Eingaben prüfen
 $name  = trim($_POST['name']  ?? '');
 $email = trim($_POST['email'] ?? '');
+$invite= trim($_POST['invite'] ?? '');
+$honeypot = trim($_POST['website'] ?? '');
+
+// Spam-Check
+if ($honeypot !== '') {
+  exit('Spam erkannt.');
+}
+
+// Einladungscode prüfen, wenn gesetzt
+$expected = setting('invite_code');
+if ($expected !== '') {
+  if ($invite === '' || !hash_equals($expected, $invite)) {
+    http_response_code(400);
+    exit('Ungültiger oder fehlender Einladungscode.');
+  }
+}
 
 if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
   http_response_code(400);
@@ -17,19 +32,14 @@ if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 try {
-  // E-Mail klein speichern, UNIQUE schützt vor Doppelanmeldung
   $stmt = db()->prepare('INSERT INTO participants (name, email) VALUES (?, ?)');
   $stmt->execute([$name, strtolower($email)]);
 } catch (PDOException $e) {
-  // 1062 = Duplicate entry (wegen UNIQUE uq_email)
   if (($e->errorInfo[1] ?? null) == 1062) {
-    // sanfte Rückmeldung
-    // Optional: du kannst hier auch ein Redirect mit Querystring machen (?dupe=1)
     exit('Diese E-Mail ist bereits angemeldet.');
   }
-  throw $e; // andere DB-Fehler weiterwerfen
+  throw $e;
 }
 
-// zurück zur Startseite
 header('Location: index.php', true, 303);
 exit;

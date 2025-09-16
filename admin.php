@@ -64,6 +64,16 @@ $cnt  = (int) db()->query('SELECT COUNT(*) FROM participants')->fetchColumn();
 <form method="post" action="advance_year.php" onsubmit="return confirm('Jahr fortschreiben?');">
   <button type="submit" class="secondary">Jahr +1 setzen</button>
 </form>
+	  
+<h2 style="margin-top:1.2rem;">Einladungscode</h2>
+<p class="note small">
+  Lasse das Feld leer, um den Einladungscode zu <strong>deaktivieren</strong>. Bei gesetztem Code müssen sich Teilnehmende
+  den Code im Formular eintragen.
+</p>
+<form method="post" action="set_invite.php" class="row row-2">
+  <input type="text" name="invite_code" placeholder="Neuer Einladungscode" value="<?= htmlspecialchars(setting('invite_code')) ?>">
+  <button type="submit" class="secondary">Code speichern</button>
+</form>
 
 <h2 style="margin-top:1.2rem;">Zurücksetzen</h2>
 <p class="note small">

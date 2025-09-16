@@ -28,7 +28,18 @@
       <form class="row row-2" method="post" action="do_register.php" autocomplete="on">
         <input type="text" name="name" placeholder="Dein Name" required>
         <input type="email" name="email" placeholder="Deine E-Mail" required>
-        <button type="submit">Eintragen</button>
+		<?php if (setting('invite_code') !== ''): ?>
+  			<input type="text" name="invite" placeholder="Einladungscode" required>
+			<?php else: ?>
+  			<input type="hidden" name="invite" value="">
+		<?php endif; ?>
+        
+		<!-- Honeypot: für Menschen unsichtbar -->
+  		<div style="display:none;">
+    	<input type="text" name="website" value="">
+  		</div>  
+		 
+		<button type="submit">Eintragen</button>
       </form>
       <p class="note small">Nur Name & E-Mail werden gespeichert. E-Mail wird in der Liste verkürzt angezeigt.</p>
     <?php else: ?>
