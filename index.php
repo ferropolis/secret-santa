@@ -3,6 +3,7 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= htmlspecialchars(setting('site_title')) ?></title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="style.css">
@@ -53,14 +54,18 @@
       </thead>
       <tbody>
       <?php
-        $stmt = db()->query('SELECT name,email,registered_at FROM participants ORDER BY registered_at ASC');
-        foreach ($stmt as $row) {
-          $safe = htmlspecialchars($row['email']);
-          if (strpos($safe,'@')!==false) { [$u,$d]=explode('@',$safe,2); $short=substr($u,0,2).'…@'.$d; }
-          else { $short='—'; }
-          echo '<tr><td>'.htmlspecialchars($row['name']).'</td><td class="meta">'.$short.'</td><td class="meta">'.htmlspecialchars($row['registered_at']).'</td></tr>';
-        }
-      ?>
+  $stmt = db()->query('SELECT name,email,registered_at FROM participants ORDER BY registered_at ASC');
+  foreach ($stmt as $row) {
+    $safe = htmlspecialchars($row['email']);
+    if (strpos($safe,'@')!==false) { [$u,$d]=explode('@',$safe,2); $short=substr($u,0,2).'…@'.$d; }
+    else { $short='—'; }
+    echo '<tr class="row-card">';
+    echo   '<td data-label="Name">'.htmlspecialchars($row['name']).'</td>';
+    echo   '<td class="meta" data-label="E-Mail (verkürzt)">'.$short.'</td>';
+    echo   '<td class="meta" data-label="Seit">'.htmlspecialchars($row['registered_at']).'</td>';
+    echo '</tr>';
+  }
+?>
       </tbody>
     </table>
 

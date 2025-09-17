@@ -1,17 +1,19 @@
 :root{
-  --bg:#f7f8fb;
-  --card:#ffffff;
-  --text:#0f172a;
-  --muted:#64748b;
-  --red:#b91c1c;    /* Weihnachtsrot */
-  --green:#166534;  /* TannengrÃ¼n */
-  --gold:#b45309;   /* Akzent */
-  --snow:#e5f0ff;
+  /* Dark Theme Farben */
+  --bg:#0b1d14;          /* dunkles Tannengrün (oben/unten) */
+  --bg-mid:#050806;      /* fast schwarz (Mitte) */
+  --card:#0e1411;        /* Karten/Formular-Hintergrund ~ schwarz */
+  --text:#e7f2ec;        /* heller Text */
+  --muted:#9bb4a7;       /* sekundärer Text */
+  --line:#203229;        /* Linien/Border */
+  --line-soft:#17231d;   /* sehr dezente Linien */
+  --red:#e23b3b;         /* Weihnachtsrot (heller für Dark) */
+  --green:#22c55e;       /* Akzentgrün */
+  --gold:#d7a64a;        /* Akzent gold */
 }
 
-*{box-sizing:border-box}
-
 /* Basis */
+*{box-sizing:border-box}
 html,body{
   margin:0;
   padding:0;
@@ -20,26 +22,20 @@ html,body{
   min-height:100%;
 }
 
-/* ðŸ”§ Robuste Hintergrund-LÃ¶sung:
-   - kein Kacheln
-   - scrollt nicht mit
-   - mobil butterweich */
-body{
-  background:none; /* Fallback-Hintergrund entfernen */
-}
+/* Hintergrund: dunkelgrün ? schwarz ? dunkelgrün, fixiert & ohne Kacheln */
+body{ background:none; }
 body::before{
   content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  /* NEU: sanfter, weihnachtlicher Verlauf mit leichtem Grün */
+  position:fixed; inset:0; z-index:-1;
   background:
-    radial-gradient(1000px 400px at 50% -200px, rgba(22,101,52,.08), transparent),
-    linear-gradient(180deg, #f3fff6 0%, #ffffff 45%, #f2fff7 100%);
+    radial-gradient(1000px 400px at 50% -200px, rgba(20,83,45,.25), transparent),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-mid) 50%, var(--bg) 100%);
   background-repeat:no-repeat;
   background-size:cover;
 }
-/* Weihnachts-Szene am unteren Rand (SVG als Data-URI) */
+
+/* Optionaler dunkler „Hügel“-Footer, sehr subtil; bei Bedarf entfernen */
+/* Weihnachts-Szene am unteren Rand (Dark-Variante) */
 body::after{
   content:"";
   position:fixed;
@@ -48,20 +44,20 @@ body::after{
   z-index:-1;
   pointer-events:none;
   background-repeat:no-repeat;
-  background-position: center bottom;
-  background-size: cover;
+  background-position:center bottom;
+  background-size:cover;
   background-image:
     url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 400' preserveAspectRatio='xMidYMax slice'>\
   <defs>\
     <linearGradient id='g1' x1='0' y1='0' x2='0' y2='1'>\
-      <stop offset='0%' stop-color='%23166534' stop-opacity='0.15'/>\
-      <stop offset='100%' stop-color='%23166534' stop-opacity='0.35'/>\
+      <stop offset='0%' stop-color='%230a1a13' stop-opacity='0.45'/>\
+      <stop offset='100%' stop-color='%230a1a13' stop-opacity='0.75'/>\
     </linearGradient>\
   </defs>\
   <!-- Hügel -->\
   <path d='M0,320 C200,260 400,300 600,280 C800,260 1000,300 1200,270 C1400,240 1600,300 1600,300 L1600,400 L0,400 Z' fill='url(%23g1)'/>\
-  <!-- Bäume (simple Dreiecke + Stamm) -->\
+  <!-- Bäume -->\
   <g fill='%23166534'>\
     <g transform='translate(180,270)'>\
       <polygon points='0,0 25,-45 50,0'/>\
@@ -92,112 +88,182 @@ body::after{
   <!-- Geschenke -->\
   <g>\
     <g transform='translate(300,310)'>\
-      <rect x='0' y='0' width='26' height='18' rx='3' fill='%23b91c1c'/>\
-      <rect x='11' y='0' width='4' height='18' fill='%23b45309'/>\
-      <rect x='0' y='7' width='26' height='4' fill='%23b45309'/>\
+      <rect x='0' y='0' width='26' height='18' rx='3' fill='%23e23b3b'/>\
+      <rect x='11' y='0' width='4' height='18' fill='%23d7a64a'/>\
+      <rect x='0' y='7' width='26' height='4' fill='%23d7a64a'/>\
     </g>\
     <g transform='translate(880,300) scale(1.2)'>\
-      <rect x='0' y='0' width='22' height='16' rx='3' fill='%23b91c1c'/>\
-      <rect x='9' y='0' width='4' height='16' fill='%23b45309'/>\
-      <rect x='0' y='6' width='22' height='4' fill='%23b45309'/>\
+      <rect x='0' y='0' width='22' height='16' rx='3' fill='%230ea5e9'/>\
+      <rect x='9' y='0' width='4' height='16' fill='%23ffffff'/>\
+      <rect x='0' y='6' width='22' height='4' fill='%23ffffff'/>\
     </g>\
     <g transform='translate(1180,315)'>\
-      <rect x='0' y='0' width='18' height='14' rx='3' fill='%230ea5e9'/>\
-      <rect x='7' y='0' width='4' height='14' fill='%23ffffff'/>\
-      <rect x='0' y='5' width='18' height='4' fill='%23ffffff'/>\
+      <rect x='0' y='0' width='18' height='14' rx='3' fill='%23f59e0b'/>\
+      <rect x='7' y='0' width='4' height='14' fill='%23000000'/>\
+      <rect x='0' y='5' width='18' height='4' fill='%23000000'/>\
     </g>\
   </g>\
 </svg>");
 }
 
 
-/* Header: Deko nicht kacheln */
+/* Header (dunkel, mit dezentem grünen Schimmer) */
 .header{
-  /* dein bisheriger header-hintergrund bleibt bestehen */
   background:
-    radial-gradient(200px 80px at 10% 0%, rgba(185,28,28,.08), transparent),
-    radial-gradient(200px 80px at 90% 0%, rgba(22,101,52,.08), transparent);
-  background-repeat:no-repeat;
-  background-size:cover;
-  border-bottom:4px solid rgba(22,101,52,.08);
-  padding:1.25rem 0;
-  position: relative; /* für ::after */
+    radial-gradient(220px 90px at 10% 0%, rgba(34,197,94,.08), transparent),
+    radial-gradient(220px 90px at 90% 0%, rgba(34,197,94,.08), transparent),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  background-repeat:no-repeat; background-size:cover;
+  border-bottom:2px solid var(--line);
+  padding:1.25rem 0; position:relative;
 }
-
 .header::after{
-  content:"";
-  position:absolute;
-  left:0; right:0; top:0;
-  height:18px;
-  pointer-events:none;
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='200' height='18' viewBox='0 0 200 18'>\
-  <path d='M0,9 Q50,3 100,9 T200,9' stroke='%2322563b' stroke-width='2' fill='none'/>\
-  <g fill='%23b91c1c'>\
-    <circle cx='20' cy='10' r='3'/>\
-    <circle cx='60' cy='8' r='3'/>\
-    <circle cx='100' cy='10' r='3'/>\
-    <circle cx='140' cy='8' r='3'/>\
-    <circle cx='180' cy='10' r='3'/>\
-  </g>\
-  <g fill='%23f59e0b'>\
-    <circle cx='40' cy='7' r='3'/>\
-    <circle cx='80' cy='11' r='3'/>\
-    <circle cx='120' cy='7' r='3'/>\
-    <circle cx='160' cy='11' r='3'/>\
-  </g>\
+  content:""; position:absolute; left:0; right:0; top:0; height:14px; pointer-events:none; opacity:.6;
+  background-image:url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='220' height='14' viewBox='0 0 220 14'>\
+  <path d='M0,7 Q55,1 110,7 T220,7' stroke='%231b2a23' stroke-width='2' fill='none'/>\
+  <g fill='%23e23b3b'><circle cx='20' cy='8' r='2.6'/><circle cx='100' cy='9' r='2.6'/><circle cx='180' cy='8' r='2.6'/></g>\
+  <g fill='%23d7a64a'><circle cx='60' cy='6' r='2.6'/><circle cx='140' cy='10' r='2.6'/></g>\
 </svg>");
-  background-repeat: repeat-x;
-  background-position: center top;
-  opacity: .9;
+  background-repeat:repeat-x; background-position:center top;
 }
 
-
+/* Layout & Karten */
 .container{max-width:900px;margin:0 auto;padding:0 1rem}
-.card{background:var(--card);border-radius:18px;padding:1.25rem;box-shadow:0 10px 28px rgba(0,0,0,.06)}
+.card{
+  background:var(--card);
+  border-radius:18px;
+  padding:1.25rem;
+  box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02);
+  border:1px solid var(--line);
+}
+
+/* Typografie */
 h1{margin:.2rem 0 1rem;font-size:1.7rem;display:flex;gap:.6rem;align-items:center}
 h1 .fl{font-size:1.4rem}
 h2{margin:1.1rem 0 .6rem;font-size:1.2rem}
-.row{display:flex;gap:1rem;flex-wrap:wrap}
-input[type="text"],input[type="email"],input[type="password"]{
-  width:100%;padding:.7rem .8rem;border:1px solid #e5e7eb;border-radius:12px
-}
-button,.btn{
-  display:inline-block;padding:.7rem 1rem;border:0;border-radius:12px;background:var(--red);
-  color:#fff;cursor:pointer;text-decoration:none;transition:.2s transform ease;
-}
-button:hover,.btn:hover{transform:translateY(-1px)}
-button.secondary{background:var(--green)}
-.badge{display:inline-block;padding:.2rem .6rem;border-radius:999px;background:#fee2e2;color:#7f1d1d;font-size:.82rem}
 .meta{color:var(--muted);font-size:.92rem}
-table{width:100%;border-collapse:collapse}
-th,td{padding:.6rem .4rem;border-bottom:1px solid #e5e7eb}
-.footer{margin-top:1rem;color:var(--muted);font-size:.85rem}
-.note{background:rgba(180,83,9,.08);border-left:4px solid var(--gold);padding:.6rem .8rem;border-radius:8px}
-hr{border:0;height:1px;background:#e5e7eb;margin:1rem 0}
 .small{font-size:.9rem}
 
-@media (min-width:680px){
-  .row-2>*{flex:1}
+/* Formulare – dunkel */
+.row{display:flex;gap:1rem;flex-wrap:wrap}
+input[type="text"],input[type="email"],input[type="password"]{
+  width:100%; padding:.7rem .8rem; border-radius:12px;
+  background:#0a100d; color:var(--text);
+  border:1px solid var(--line);
+  outline:none;
 }
-button.danger { background:#7f1d1d; }
-button.danger:hover { transform: translateY(-1px); }
+input::placeholder{color:rgba(231,242,236,.55)}
+input:focus{border-color:#2dd4bf; box-shadow:0 0 0 3px rgba(45,212,191,.15)}
 
-/* === Snow Canvas (Overlay) === */
+/* Buttons */
+button,.btn{
+  display:inline-block; padding:.7rem 1rem; border:0; border-radius:12px;
+  background:var(--red); color:#fff; cursor:pointer; text-decoration:none;
+  transition:.2s transform ease, .2s filter ease;
+}
+button:hover,.btn:hover{transform:translateY(-1px); filter:brightness(1.05)}
+button.secondary{background:#198754}
+button.danger{background:#7f1d1d}
+button.danger:hover{transform:translateY(-1px)}
+
+/* Badges & Hinweise */
+.badge{
+  display:inline-block; padding:.2rem .6rem; border-radius:999px;
+  background:rgba(226,59,59,.15); color:#ffb4b4; font-size:.82rem;
+  border:1px solid rgba(226,59,59,.25);
+}
+.note{
+  background:rgba(215,166,74,.10);
+  border-left:4px solid var(--gold);
+  padding:.6rem .8rem; border-radius:8px; color:var(--text);
+}
+
+/* Tabellen – dunkel */
+table{width:100%; border-collapse:collapse}
+th,td{padding:.6rem .4rem; border-bottom:1px solid var(--line-soft)}
+thead th{color:var(--muted); font-weight:600}
+
+/* Trenner & Footer */
+hr{border:0; height:1px; background:var(--line-soft); margin:1rem 0}
+.footer{margin-top:1rem; color:var(--muted); font-size:.85rem}
+
+/* Countdown (Fließtext) */
+.countdown-line{
+  text-align:center;
+  font-size:1rem;
+  font-weight:400;
+  margin:.8rem 0 1rem;
+  color:var(--text);
+}
+
+/* Snow Canvas (Overlay) */
 #snow-canvas{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;          /* über allem, aber klicks bleiben durchlässig */
-  pointer-events: none;   /* keine Klick-Blockade */
+  position:fixed; inset:0; z-index:9999; pointer-events:none;
 }
-/* Wenn Nutzer reduzierte Bewegung wünscht: kein Schnee */
-@media (prefers-reduced-motion: reduce) {
-  #snow-canvas { display: none !important; }
+@media (prefers-reduced-motion: reduce){
+  #snow-canvas{display:none !important;}
 }
-.countdown-line {
-  text-align: center;   /* mittig ausgerichtet */
-  font-size: 1rem;      /* normale Schriftgröße */
-  font-weight: 400;     /* normal, nicht fett */
-  margin: .8rem 0 1rem;
-  color: var(--text);   /* normale Textfarbe */
+
+/* Responsive */
+@media (min-width:680px){ .row-2>*{flex:1} }
+/* ---------- Mobile-Optimierungen ---------- */
+
+/* Grundabstände/F typografie auf kleinen Screens etwas luftiger */
+@media (max-width: 720px){
+  .container{padding:0 .75rem}
+  h1{font-size:1.45rem}
+  h2{font-size:1.1rem}
+  .card{padding:1rem}
+  .badge{font-size:.78rem}
+}
+
+/* Formular: auf Handy untereinander, Buttons 100% Breite */
+@media (max-width: 720px){
+  .row{flex-direction:column}
+  button,.btn{width:100%}
+  input[type="text"], input[type="email"], input[type="password"]{
+    font-size:16px; /* verhindert iOS-Zoom */
+  }
+}
+
+/* Tabelle als „Karten“-Liste auf Handy */
+@media (max-width: 600px){
+  table{border:0}
+  thead{display:none}
+  tbody, tr, td {display:block; width:100%}
+  tr.row-card{
+    background: rgba(255,255,255,.02);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:.6rem .8rem;
+    margin:.6rem 0;
+    box-shadow:0 4px 16px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.02);
+  }
+  td{
+    border:0;
+    padding:.35rem 0;
+  }
+  td::before{
+    content: attr(data-label);
+    display:block;
+    font-size:.85rem;
+    color: var(--muted);
+    margin-bottom:.15rem;
+  }
+}
+
+/* Countdown-Fließtext: etwas schmaler und mittig */
+@media (max-width: 600px){
+  .countdown-line{ margin:.6rem auto 1rem; max-width: 28ch; }
+}
+
+/* Header-Lichterkette etwas dezenter auf Handy */
+@media (max-width: 600px){
+  .header::after{ opacity:.45; height:12px; }
+}
+
+/* Schneehaufen unten nicht zu hoch auf sehr kleinen Screens */
+@media (max-width: 480px){
+  body::after{ height:22vh; }
 }
