@@ -40,5 +40,5 @@ At this time only available in german language.
 Enjoy! 🎅
 
 ## Pictures
-<img width="672" height="539" alt="2025-09-15 23_07_53-Secret Santa – Jährliche Wichtel-Ziehung" src="https://github.com/user-attachments/assets/1c9db7f8-888b-4732-bf33-8b4e46be5595" />
-<img width="674" height="472" alt="2025-09-15 23_08_14-secret-santa lattemann net_admin php" src="https://github.com/user-attachments/assets/72a3f755-2dd7-4723-a5f4-a149210029d5" />
+<img height="470" alt="Secret Santa – Jährliche Wichtel-Ziehung" src="https://github.com/user-attachments/assets/1466614c-34de-42ec-8ea4-7f8763d29f8f" />
+<img width="682" height="870" alt="Secret Santa – Jährliche Wichtel-Ziehung-Admin" src="https://github.com/user-attachments/assets/2392a7d7-2994-488a-a414-8dffdd5a72dc" />
