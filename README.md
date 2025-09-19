@@ -41,4 +41,4 @@ Enjoy! 🎅
 
 ## Pictures
 <img height="470" alt="Secret Santa – Jährliche Wichtel-Ziehung" src="https://github.com/user-attachments/assets/1466614c-34de-42ec-8ea4-7f8763d29f8f" />
-<img width="682" height="870" alt="Secret Santa – Jährliche Wichtel-Ziehung-Admin" src="https://github.com/user-attachments/assets/2392a7d7-2994-488a-a414-8dffdd5a72dc" />
+<img height="470" alt="Secret Santa – Jährliche Wichtel-Ziehung-Admin" src="https://github.com/user-attachments/assets/2392a7d7-2994-488a-a414-8dffdd5a72dc" />
