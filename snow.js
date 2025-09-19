@@ -26,7 +26,7 @@
   if (reduceMotion) return;
 
   // ---- Config ----
-  const IDLE_MS = 45000;     // nach 45s Inaktivität "schneit es ein"
+  const IDLE_MS = Infinity;     // nach 45s Inaktivität "schneit es ein"
   const BASE_SPAWN = 2;      // anfangs: 1–2 Flocken aktiv
   const MAX_SPAWN = 90;      // bei Inaktivität
   const GRAVITY_MIN = 0.25;
