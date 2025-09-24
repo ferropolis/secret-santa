@@ -23,7 +23,7 @@ Perfect for:
 ## 📥 Installation & Usage
 Clone the repository
 ```
-git clone https://github.com/ferropöolis/secret-santa.git
+git clone https://github.com/ferropolis/secret-santa.git
 cd secret-santa
 ```
 
